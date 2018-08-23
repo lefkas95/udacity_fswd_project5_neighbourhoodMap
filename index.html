@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Neighbourhood Map</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="options-box">
+        <h1>Welcome to Saalfelden</h1>
+        <div>
+            <label for="search">Filter to markers</label>
+            <input id="search" type="text" data-bind="textInput: filter, event : {keyup: renderMarkersAndList}">
+            <ul data-bind="foreach: markerList">
+                <li data-bind="text: title, click: $parent.showMarkerInfo"></li>
+            </ul>
+        </div>
+        <hr>
+        <div>
+            <span>Click on a list view item or map marker for detailed information.</span>
+            <hr>
+            <span>Restaurants were found using the Foursquare - API. Thanks a lot.</span>
+        </div>
+    </div>
+    <div id="map">Google Map (not yet) loaded...</div>
+</div>
+
+<script src="js/libs/jquery.min.js"></script>
+<script src="js/lib/knockout-3.2.0.js"></script>
+<script src="js/script.js"></script>
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?libraries=geometry&key=YOUR_KEY&v=3&callback=googleApiCallback">
+</script>
+</body>
+</html>
