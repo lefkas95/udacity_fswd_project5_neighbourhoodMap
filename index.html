@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Neighbourhood Map</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -9,7 +10,7 @@
 
 <div class="container">
     <div class="options-box">
-        <h1>Welcome to Saalfelden</h1>
+        <h2>Welcome to Saalfelden</h2>
         <div>
             <label for="search">Filter to markers</label>
             <input id="search" type="text" data-bind="textInput: filter, event : {keyup: renderMarkersAndList}">
@@ -17,8 +18,8 @@
                 <li data-bind="text: title, click: $parent.showMarkerInfo"></li>
             </ul>
         </div>
-        <hr>
-        <div>
+        <div class="details">
+            <hr>
             <span>Click on a list view item or map marker for detailed information.</span>
             <hr>
             <span>Restaurants were found using the Foursquare - API. Thanks a lot.</span>
@@ -32,7 +33,7 @@
 <script src="js/script.js"></script>
 
 <script async defer
-        src="https://maps.googleapis.com/maps/api/js?libraries=geometry&key=YOUR_KEY&v=3&callback=googleApiCallback">
+        src="https://maps.googleapis.com/maps/api/js?libraries=geometry&key=AIzaSyB1TCfF62rdZtxV0i9CM8p7lQjqTIhOmfw&v=3&callback=googleApiCallback" onerror="googleError()">
 </script>
 </body>
 </html>

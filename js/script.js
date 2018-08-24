@@ -7,8 +7,8 @@ const locations = [
 ];
 
 // Please enter your foursquare credentials here
-const foursquare_id = "YOUR_ID";
-const foursquare_secret = "YOUR_SECRET";
+const foursquare_id = "ZGOFVNE4UUK2FMLVIRA3GBVR0JEIO5HISOJJAWX0RHHHYJQ3";
+const foursquare_secret = "X3EAFLLS4JWHHHCVCPZANUC5AL3QA4BD5RPS1QXQZF0VK1CW";
 
 const fourSquareUrl = 'https://api.foursquare.com/v2/venues/explore?client_id='
     + foursquare_id + '&client_secret='
@@ -27,6 +27,7 @@ const ViewModel = function() {
 
     // Find a restaurant near each location using the Foursquare - API
     this.initFoursquareData = function() {
+        let errorOccured = false;
         locations.forEach((location) => {
             // Build location string in format '<latitude>,<longitude>'
             const ll = location.location.lat + ',' + location.location.lng;
@@ -38,7 +39,14 @@ const ViewModel = function() {
                 } else {
                     console.log('No restaurant found near ' + location.title);
                 }
-            }).error(() => console.log('Error while requesting restaurant info for location ' + location.title));
+            }).error(() => {
+                console.log('Error while requesting restaurant info for location ' + location.title);
+                // Flag used to only show the error once for all request
+                if (!errorOccured) {
+                    errorOccured = true;
+                    alert('Error while loading restaurant infos of FourSquare');
+                }
+            });
         });
     };
 
@@ -134,6 +142,11 @@ ko.applyBindings(viewModel);
 function googleApiCallback() {
     viewModel.initFoursquareData();
     viewModel.initMap();
+}
+
+// Error handler for Google Maps
+function googleError() {
+    alert('Error while loading google maps');
 }
 
 
